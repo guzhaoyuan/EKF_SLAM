@@ -45,7 +45,7 @@ h_old = plot(x(1),x(2),'ro');
 for i = 1:frequency
     pause(0.05);
     x = movePosition(x,dx);
-    y = directObservation(x,S1,landmark(2,:));disp(y);
+    y = directMonoObservation(x,S1,landmark(2,:));disp(y);
     figure(1);
     %delete(h_old);
     h = plot(x(1),x(2),'ro');
