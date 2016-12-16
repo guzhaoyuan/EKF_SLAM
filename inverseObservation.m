@@ -5,7 +5,7 @@
 %   y, Observation of the all Landmark
 %Output:
 %   [x,y], Position of the i th Landmark
-function worldR = inverseObservation(R,S,y)
+function referenceR = inverseObservation(R,S,y)
 %    worldR = S(:,1)+S(:,2);
 %    f = @(worldR) triangu(worldR,S,y); % function of dummy variable y
 %    fsolve(f,worldR);
@@ -19,6 +19,5 @@ function worldR = inverseObservation(R,S,y)
     vb =  (ReferX - observe_center(1,1))*tan(R(3)-atan(y(1))) + (observe_center(2,1) - ReferY);
     vc =  (ReferX - observe_center(1,2))*tan(R(3)-atan(y(2))) + (observe_center(2,2) - ReferY);
     [ReferX,ReferY] = solve(vb,vc);
-    worldR = [ReferX,ReferY]';
-    plot(worldR(1),worldR(2),'ro');
+    referenceR = [ReferX,ReferY]';
 end

@@ -1,5 +1,15 @@
-function observeAll(R)
-    for %all the stuff in map
-        y = directObservation(R,[0;0;0],stuff_position);
+%keep using direct and inverse Observation to find all the marks in view
+%Mark row[x,y] -> y row[x,y] -> Z row[x,y]
+function observeAll(x,S,Mark)
+    Y = zeros(size(Mark));
+    
+    for i = 1:size(Mark,1)
+         Y(i,:) = directObservation(x,S,Mark(i,:));
     end
+    detectedY = Y(~any(isnan(Y),2),:);
+    Z = zeros(size(detectedY));
+    for i = 1:size(detectedY,1)
+         Z(i,:) = inverseObservation(x,S,detectedY(i,:));
+    end
+    plot(Z(:,1),Z(:,2),'bo');
 end

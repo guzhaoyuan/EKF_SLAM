@@ -23,19 +23,23 @@ corner4 = [10,-10]';
 %           - -,
 %           - -]
 landmark = [5 5;-5 5;-5 -5;5 -5];
-
+wallmark = [linspace(corner1(1),corner2(1),wallPoints)',linspace(corner1(2),corner2(2),wallPoints)';
+    linspace(corner2(1),corner3(1),wallPoints)',linspace(corner2(2),corner3(2),wallPoints)';
+    linspace(corner3(1),corner4(1),wallPoints)',linspace(corner3(2),corner4(2),wallPoints)';
+    linspace(corner4(1),corner1(1),wallPoints)',linspace(corner4(2),corner1(2),wallPoints)';];
 
 %% main entry of the whole program
 
 dx = (waypoint2 - waypoint1) / frequency; %Attention Bug! Angle changes along with position.
 x = waypoint1;
 
+observeAll(x,S,wallmark);
 
 for i = 1:frequency
     x = movePosition(x,dx);
     plot(x(1),x(2),'ro');
     hold on;
-    observeAll(x,);
+    observeAll(x,S,wallmark);
 end
 
 plot(landmark(:,1),landmark(:,2),'bx');
