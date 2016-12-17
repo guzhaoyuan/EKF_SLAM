@@ -48,6 +48,7 @@ for i = 1:frequency
     hold on;
     Z = observeAll(x,S,wallmark);
     plot(Z(:,1),Z(:,2),'bo');
+    drawnow;
     %pause;
 end
 
