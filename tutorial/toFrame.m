@@ -15,9 +15,12 @@ function [pf, PF_f, PF_p] = toFrame(F , p)
             %   (c) 2010, 2011, 2012 Joan Sola
 t = F(1:2);
 a = F(3);
+
 R = [cos(a) -sin(a) ; sin(a) cos(a)];
+
 pf = R' * (p - t);
-if nargout > 1 % Jacobians requested px = p(1);
+if nargout > 1 % Jacobians requested 
+    px = p(1);
     py = p(2);
     x = t(1);
     y = t(2);
